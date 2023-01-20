@@ -2,52 +2,25 @@
 import React, {useState, useEffect} from 'react'
 import {Text,StyleSheet,View, TextInput, Pressable, TouchableOpacity, Alert, ScrollView} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import {loginApi} from "../api/login"
+import useAuth from '../hooks/useAuth';
 
 const InputsLogin = ()  =>  {
     const navigation = useNavigation(); 
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const {login} = useAuth();
 
-    const data = {
-        "password": password,
-        "phone": phone
-    }
-    const handIngresar  = async() =>{
-        console.log(data)
-        return false
-        try {
-            const response = await fetch('https://appmobile.altcel2.com/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    phone,
-                    password,
-                })
-            }) 
-    
-            const {user_id, message, http_code} = await response.json()
-           
-            console.log(response.status)
-            console.log(user_id)
-            console.log(response.status)
-            console.log(message)
-            console.log(http_code)
-            if (response.status == 200) {
-                // statusLogin = 'login'
-                // Navigations(statusLogin)
-            }else if (response.status == 400 || response.status == 500) {
-                // statusLogin = 'NoLogin'
-                // Navigations(statusLogin)
-            }
-    
-        }catch(error){
-            console.log(error)
-        }
+    const handIngresar  = async () =>{
+        const data = await loginApi(phone, password)
+        login(data)
+        // if (data.statusCode) {
+        // }else if (data.statusCode == 400 || data.statusCode == 500) {
+        //     alert.Alert({
 
-        
-    } 
+        //     })
+        // }
+    }   
 
     return ( 
         <View>

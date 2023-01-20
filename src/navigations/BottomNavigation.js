@@ -19,27 +19,31 @@ const MyTabs = () =>{
           : <TabsIndroid/>
 }
 
+const color = '#000';
+
 
 const TabsIndroid= () => {
   return (
-    <Tab.Navigator sceneAnimationEnabled={true} barStyle={{backgroundColor: styles.color}} screenOptions={({route}) => ({
+    <Tab.Navigator sceneAnimationEnabled={true} screenOptions={({route}) => ({
       tabBarIcon: ({}) =>{
         let iconName = ''
-      switch (route.name) {
-        case 'Panel':
-          iconName = 'home-outline'         
-          break;
-        case 'Recargas':
-          iconName = 'cash-outline'
-          break;
-        case 'EstadoCuenta':
-          iconName = 'document-text-outline'
-          break;
-      }
-      return <Icon name={iconName} size={15}  />
-      }
+        switch (route.name) {
+          case 'Panel':
+            iconName = 'home-outline'         
+            break;
+          case 'Recargas':
+            iconName = 'cash-outline'
+            break;
+          case 'EstadoCuenta':
+            iconName = 'document-text-outline'
+            break;
+        }
+      return <Icon color={color} name={iconName} size={20}  />
+      },
+      tabBarActiveTintColor: '#4923F5',
+      tabBarInactiveTintColor: 'black',
     })}>
-      <Tab.Screen name="Panel" component={Panel} />
+      <Tab.Screen name="Panel"  component={Panel} />
       <Tab.Screen name="Recargas" component={Recargas} />
       <Tab.Screen name="EstadoCuenta" component={EstadoCuenta } />
     </Tab.Navigator>

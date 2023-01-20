@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, TextInput, View, Pressable,TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, Text, TextInput, View, Pressable,TouchableOpacity } from 'react-native';
+import { registerApi } from '../api/registe';
 
 const InputsRegister = () => {
     const navigation = useNavigation(); 
@@ -9,20 +10,10 @@ const InputsRegister = () => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [loading, setLoading] = useState(false)
     const isValidEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    const data = {
-        "name":name,
-        "email":email,
-        "phone":phone,
-        "password":password,
-        "passwordConfirm":passwordConfirm
-    }
     const handRegistro = async () => {
-        
-        console.log(data);
-        return FontFaceSetLoadEvent;
-
         if([name, email, phone, password, passwordConfirm].includes('')){
             Alert.alert(
                 "Error",
@@ -53,52 +44,13 @@ const InputsRegister = () => {
               )
             return
           }
-          
-        try {
-            const response = await fetch('https://appmobile.altcel2.com/registro', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    phone,
-                    password,
-                    passwordConfirm
-                })
-            }) 
-            
-            .then((response) => {
-                // console.log(response);
-                if(response.status == 400)
-                {
-                    Alert.alert(
-                        "Error"+' '+response.status,
-                        "Número se encuentra registrado"
-                      )
-                    return
-                } else{
-                    Alert.alert(
-                        "Success",
-                        "Registro Existoso"
-                      )
-                        obtenerPresupuestoStorage();
-                        navigation.replace('Panel');
-                    return
-                }
-            })
-
-            const {nombre, correo, telefono, contrasenia} = await response.json()
-
-            setName(nombre)
-            setEmail(correo)
-            setPhone(telefono)
-            setPassword(contrasenia)
-
-        }catch(error){
-            console.log(error)
-        }
+          const data = await registerApi(name, email, phone, password, passwordConfirm)
+          console.log(data.dataDB)
+          setName(nombre)
+          setEmail(correo)
+          setPhone(telefono)
+          setPassword(contrasenia)
+          return false
     }
   return (
     <View style={styles.contenido}>

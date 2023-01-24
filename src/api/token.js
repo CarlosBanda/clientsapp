@@ -8,3 +8,12 @@ export async function setTokenApi(token){
         return null;
     }
 }
+
+export async function getTokenApi(){
+    try {
+        const token = await AsyncStorage.getItem("token")
+        return token
+    } catch (error) {
+        return null;
+    }
+}

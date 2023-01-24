@@ -16,7 +16,7 @@ const Tab = createMaterialBottomTabNavigator();
 const MyTabs = () =>{
   return Platform.OS === 'ios'
           ? <TabsIos/>
-          : <TabsIndroid/>
+          : <TabsIos/>
 }
 
 const color = '#000';
@@ -40,10 +40,12 @@ const TabsIndroid= () => {
         }
       return <Icon color={color} name={iconName} size={20}  />
       },
-      tabBarActiveTintColor: '#4923F5',
-      tabBarInactiveTintColor: 'black',
-    })}>
-      <Tab.Screen name="Panel"  component={Panel} />
+      
+    })} initialRouteName="Home"
+      activeColor="#040964"
+      inactiveColor="#3e2465"
+      barStyle={{ backgroundColor: '#FFFFFF' }}>
+      <Tab.Screen  name="Panel"  component={Panel} />
       <Tab.Screen name="Recargas" component={Recargas} />
       <Tab.Screen name="EstadoCuenta" component={EstadoCuenta } />
     </Tab.Navigator>
@@ -54,24 +56,25 @@ const TabsIndroid= () => {
 
 const TabsIos = () => {
   return (
-    <BottomTabIos.Navigator sceneAnimationEnabled={true} barStyle={{backgroundColor: styles.color}} screenOptions={({route}) => ({
+        <BottomTabIos.Navigator sceneAnimationEnabled={true} screenOptions={({route}) => ({ headerShown:false,
       tabBarIcon: ({}) =>{
         let iconName = ''
-      switch (route.name) {
-        case 'Panel':
-          iconName = 'home-outline'         
-          break;
-        case 'Recargas':
-          iconName = 'cash-outline'
-          break;
-        case 'EstadoCuenta':
-          iconName = 'document-text-outline'
-          break;
-      }
-      return <Icon name={iconName} size={15}  />
-      }
+        switch (route.name) {
+          case 'Panel':
+            iconName = 'home-outline'         
+            break;
+          case 'Recargas':
+            iconName = 'cash-outline'
+            break;
+          case 'EstadoCuenta':
+            iconName = 'document-text-outline'
+            break;
+        }
+      return <Icon color={color} name={iconName} size={20}  />
+      },
+      
     })}>
-      <BottomTabIos.Screen name="Panel" component={Panel} />
+      <BottomTabIos.Screen  name="Panel" component={Panel} />
       <BottomTabIos.Screen name="Recargas" component={Recargas} />
       <BottomTabIos.Screen name="EstadoCuenta" component={EstadoCuenta } />
     </BottomTabIos.Navigator>

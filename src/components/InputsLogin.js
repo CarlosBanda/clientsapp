@@ -14,12 +14,6 @@ const InputsLogin = ()  =>  {
     const handIngresar  = async () =>{
         const data = await loginApi(phone, password)
         login(data)
-        // if (data.statusCode) {
-        // }else if (data.statusCode == 400 || data.statusCode == 500) {
-        //     alert.Alert({
-
-        //     })
-        // }
     }   
 
     return ( 

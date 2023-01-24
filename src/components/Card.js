@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 15,
         borderColor: '#4923F5',
+        backgroundColor:'#FFFFFF'
         // marginTop: 60
     },
     headerDevice:{

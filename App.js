@@ -5,24 +5,32 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DrawerMenu } from './src/navigations/Drawer';
 import LoginNavigations from './src/navigations/LoginNavigation';
 import AuthContext from './src/context/AuthContext'; 
-import {setTokenApi} from "./src/api/token"
+import {setTokenApi, getTokenApi} from "./src/api/token"
 
 
 const App = () => {
   const [auth, setAuth] = useState(undefined);
 
   useEffect(() => {
-    setAuth(null)
+    ( async () =>{
+      const token = await getTokenApi()
+
+      if (token) {
+        setAuth({
+          token
+        })
+      }else{
+        setAuth(null)
+      }
+    })()
   }, [])
    
   const login = (user)=>{
-    console.log('DESDE APP')
-    console.log(user)
-    // setTokenApi(user.jwt)
-    setTokenApi('tokenBackend')
+    setTokenApi(user.jwt)
     setAuth({
-      "userId": user.userId,
-      "devices": user.devices
+      token: user.jwt,
+      userId: user.userId,
+      devices: user.devices
     })
   }
   const authData = useMemo(

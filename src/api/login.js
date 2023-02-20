@@ -10,7 +10,7 @@ export async function loginApi(phone, password){
                 password,
             })
         }) 
-    
+        console.log(response.userId)
         return data = await response.json()
         
         console.log(response.status)

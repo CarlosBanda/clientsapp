@@ -5,34 +5,8 @@ import ProgressBar from 'react-native-progress/Bar'
 // import CircularProgress from 'react-native-circular-progress-indicator';
 import { globalStyle } from '../styles/'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { getDataAltan } from '../helpers/getDataAltan';
 
-function ModalConsumo (setModalConsumo, service)  {
-    // console.log(consultUF)
-    useEffect(() => {
-        consultUF()
-    }, [])
-
-    // const consultUF = async () => { 
-    //     console.log(token, 'PETITION ALTAN')
-    //     // generateTokenAltan()
-    //     const userid = 41;
-    //     try {
-    //         const response = await fetch('https://altanredes-prod.apigee.net/cm/v1/subscribers/3339064244/profile', {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': 'Bearer '+accessToken
-    //             }
-    //         }) 
-    //         const {detail} = await response.json()
-    //         console.log(detail)
-    //         // addDevice()
-    
-    //     }catch(error){
-    //         console.log(error)
-    //     }
-    // }
+export function ModalConsumo ({service, imei})  {
     
   return (
     <View style={styles.modalConsumos}>
@@ -44,7 +18,7 @@ function ModalConsumo (setModalConsumo, service)  {
                 </View>
                 <View>
                     <Text style={[styles.text, styles.textplanDevice]}>Plan</Text>
-                    <Text style={styles.text}>MOVILIDAD TN 30 DÍAS</Text>
+                    <Text style={styles.text}>{imei}</Text>
                 </View>
             </View>
             <View style={styles.bodyConsumos}>
@@ -176,4 +150,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ModalConsumo;
+// export default ModalConsumo;

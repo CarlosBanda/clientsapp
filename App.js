@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     ( async () =>{
       const token = await getTokenApi()
-
+      console.log(token)
       if (token) {
         setAuth({
           token

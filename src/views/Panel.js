@@ -13,11 +13,7 @@ function Panel() {
     const [isVisible, setIsVisible] = useState(false)
     const {useGetDevice, addDevice, isLoading} = getDataDB()
     const [accessToken, setAccessToken ] = useState('');
-    // const keyProduction = 'ZjRWc3RzQXM4V1c0WFkyQVVtbVBSTE1pRDFGZldFQ0k6YkpHakpCcnBkWGZoajczUg==';
     console.log(accessToken)
-    // useEffect(() => {
-    //     generateTokenAltan()
-    // }, [])
 
     if (isLoading) {
         return (
@@ -31,7 +27,7 @@ function Panel() {
         <View style={styles.container}>
             
             <View style={styles.addDevice}>
-                <Pressable style={styles.btnAddDevice} onPress={() => setIsVisible(true)}>
+                <Pressable style={[styles.btnAddDevice, {backgroundColor:'#FFFFFF'}]} onPress={() => setIsVisible(true)}>
                 {/* <Pressable style={styles.btnAddDevice}> */}
                     <Text style={{color:'black', alignItems:'center'}}>Agregar Dispositivo <Icon name='add-outline' size={25} color="blue"/></Text>
                 </Pressable>

@@ -14,8 +14,8 @@ export const LoginApi = async({phone, password}) => {
         const {user_id, message, http_code} = await response.json()
        
         // console.log(response.status)
-        // console.log(user_id)
-        // console.log(response.status)
+        // // console.log(user_id)
+        // // console.log(response.status)
         // console.log(message)
         // console.log(http_code)
         const responseApi = {

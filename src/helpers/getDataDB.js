@@ -7,10 +7,12 @@ export const getDataDB = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const getDevices = async () => { 
+        // console.log(userId+ ' DATABASE')
+
         setIsLoading(true)
-        const userid = 41;
+        const userId = 41;
         try {
-            const response = await fetch('https://appmobile.altcel2.com/devices?userid='+userid, {
+            const response = await fetch('https://appmobile.altcel2.com/devices?userid='+userId, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

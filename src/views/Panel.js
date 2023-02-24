@@ -12,12 +12,8 @@ function Panel() {
     const [dn, setdn] = useState('')
     const [isVisible, setIsVisible] = useState(false)
     const {useGetDevice, addDevice, isLoading} = getDataDB()
-    const [accessToken, setAccessToken ] = useState('');
-    // const keyProduction = 'ZjRWc3RzQXM4V1c0WFkyQVVtbVBSTE1pRDFGZldFQ0k6YkpHakpCcnBkWGZoajczUg==';
-    console.log(accessToken)
-    // useEffect(() => {
-    //     generateTokenAltan()
-    // }, [])
+    // const [accessToken, setAccessToken ] = useState('');
+    // console.log(useGetDevice)
 
     if (isLoading) {
         return (
@@ -31,7 +27,7 @@ function Panel() {
         <View style={styles.container}>
             
             <View style={styles.addDevice}>
-                <Pressable style={styles.btnAddDevice} onPress={() => setIsVisible(true)}>
+                <Pressable style={[styles.btnAddDevice, {backgroundColor:'#FFFFFF'}]} onPress={() => setIsVisible(true)}>
                 {/* <Pressable style={styles.btnAddDevice}> */}
                     <Text style={{color:'black', alignItems:'center'}}>Agregar Dispositivo <Icon name='add-outline' size={25} color="blue"/></Text>
                 </Pressable>
@@ -58,7 +54,7 @@ function Panel() {
                     </View>
                 </Modal>
             </View>
-            <View style={styles.body}>
+            {/* <View style={styles.body}>
                 {
                     useGetDevice.length === 0 ? <Text>Aún no cuenta con dispositivos</Text> :
                     <View style={{flex: 1}}>
@@ -75,7 +71,7 @@ function Panel() {
                     </View>
 
                 }    
-            </View>
+            </View> */}
         </View>
      );
 }
@@ -132,7 +128,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         marginBottom: 10,
-        borderColor: '#F5232D',
+        borderColor: '#2D4C89',
         // marginTop: 3
     },
     modalAdd:{

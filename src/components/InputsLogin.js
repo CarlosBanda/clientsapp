@@ -13,6 +13,7 @@ const InputsLogin = ()  =>  {
 
     const handIngresar  = async () =>{
         const data = await loginApi(phone, password)
+        console.log(data + 'IMPUTSLOGIN')
         login(data)
     }   
 
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     submitBtn:{
-        backgroundColor: 'red',
+        backgroundColor: '#2D4C89',
         padding: 11,
         marginVertical: 20,
         marginHorizontal: 11,
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         fontSize: 17
     },
     textSesion:{
-        color:'red',
+        color:'#2D4C89',
         fontSize: 40,
         textAlign: 'center',
         fontWeight: 'bold'
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
         fontSize: 20
       },
       colorResgistrar:{
-        color: 'red'
+        color: '#2D4C89'
       },
 })
 export default InputsLogin;

@@ -7,9 +7,9 @@ const Register = () => {
     <View style={{flex: 1}} >
         <View style={[styles.header,{flex:1, alignItems: 'center'}]}>
             <View style={styles.gif}>
-                <Image style={styles.burbuja} source={require('../../assets/img/Onda.png')}/>
-                {/* <Image style={styles.logo} source={require('../../assets/img/logo.png')}/> */}
-                <Image style={styles.network} source={require('../../assets/img/Social-network.gif')}/>
+                {/* <Image style={styles.burbuja} source={require('../../assets/img/Onda.png')}/> */}
+                <Image style={styles.logo} source={require('../../assets/img/log.png')}/>
+                {/* <Image style={styles.network} source={require('../../assets/img/Social-network.gif')}/> */}
             </View>
         </View>
         <View style={[styles.formulario,{flex:1}]}>
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     },
     gif:{
         alignItems: 'center',
+        justifyContent: 'center',
         marginTop: 400,
         position:'absolute',
         // backgroundColor:'green',
@@ -64,9 +65,10 @@ const styles = StyleSheet.create({
         width: 360,
       },
       logo:{
-        height:130,
-        width:180,
-        marginTop: -90
+        height:110,
+        width:200,
+        marginTop: 10,
+        marginBottom: 40
       },
       burbuja:{
         height: 300,

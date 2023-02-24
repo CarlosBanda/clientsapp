@@ -1,16 +1,33 @@
 
 import React, {useState, useEffect} from 'react'
-import {Text,StyleSheet,View, Image, Button, Pressable, Modal} from 'react-native'
+import {Text,StyleSheet,View, Image, Button, Pressable, Modal, ActivityIndicator} from 'react-native'
 import {globalStyle} from '../styles';
-import  ModalConsumo  from '../components/ModalConsumos';
+import  {ModalConsumo}  from '../components/ModalConsumos';
+import { consultUF } from '../api/altan';
 
-function Card({device}) {
+function Card(device) {
+    // console.log(auth)
     const {number, company, service, user_email, created_at, id} = device;
     const [modalConsumo, setModalConsumo] = useState(false)
-    // const {consultUF} = getDataAltan();
+    const [isLoading, setIsLoading] = useState(false)
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+                <ActivityIndicator color="red" size={ 100 } />
+            </View>
+        )
+    }
 
-    const onClick =() => {
-        setModalConsumo(true)
+    const onClick = async() => {
+        setIsLoading(true)
+        const data = await consultUF(service, number)
+        if (Object.keys(data).length >= 1) {
+            setIsLoading(false)
+            setModalConsumo(true)
+            const {imei, freeUnits, icc, rate} = data.consultUF
+            console.log({service,imei})
+            ModalConsumo({service,imei})
+        }
     }
     return ( 
         <View style={styles.card}>
@@ -43,7 +60,6 @@ function Card({device}) {
             </View>
             <Pressable style={styles.btnConsumos} onPress={()=> onClick(onClick)}><Text style={styles.text}>Consumos de datos</Text></Pressable>
             <Modal transparent={true}  visible={modalConsumo}>
-                {/* <ModalConsumo setModalConsumo={onClick} number={number} id={id} service={service}/> */}
                 <ModalConsumo setModalConsumo={onClick}  service={service}/>
             </Modal>
         </View>
@@ -60,7 +76,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderStyle: 'solid',
         borderRadius: 15,
-        borderColor: '#4923F5',
+        borderColor: '#2D4C89',
         backgroundColor:'#FFFFFF'
         // marginTop: 60
     },
@@ -95,7 +111,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         marginBottom: 15,
-        borderColor: '#F5232D',
+        borderColor: '#2D4C89',
         padding: 3,
 
     },

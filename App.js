@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useMemo, useState } from "react";
-import {StyleSheet} from 'react-native'
+import {Alert, StyleSheet} from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { DrawerMenu } from './src/navigations/Drawer';
 import LoginNavigations from './src/navigations/LoginNavigation';
@@ -26,12 +26,22 @@ const App = () => {
   }, [])
    
   const login = (user)=>{
-    setTokenApi(user.jwt)
-    setAuth({
-      token: user.jwt,
-      userId: user.userId,
-      devices: user.devices
-    })
+    console.log('LOGIN APP')
+    const http_code = user.http_code
+
+    if (http_code == '200') {
+      setTokenApi(user.jwt)
+      setAuth({
+        token: user.jwt,
+        userId: user.userId,
+        devices: user.devices
+      })
+    }else{
+      Alert.alert('Error',
+      'Número o Contraseña incorrecta.',)
+    }
+    console.log(http_code)
+    
   }
   const authData = useMemo(
     () =>({

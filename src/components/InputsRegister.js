@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
     textSesion:{
         marginTop: -50,
-        color:'red',
+        color:'#2D4C89',
         fontSize: 50,
         textAlign: 'center',
         fontWeight: 'bold'
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     submitBtn:{
-        backgroundColor: 'red',
+        backgroundColor: '#2D4C89',
         padding: 11,
         marginVertical: 20,
         marginHorizontal: 11,
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
         fontSize: 17
     },
     textSesion:{
-        color:'red',
+        color:'#2D4C89',
         fontSize: 40,
         textAlign: 'center',
         fontWeight: 'bold'
@@ -171,11 +171,14 @@ const styles = StyleSheet.create({
     //    backgroundColor: '#F5F8F9',
 
        padding: 10,
-    borderRadius: 20,
-    color: '#000',
-    marginTop: 10,
-    fontSize: 16
-},
+        borderRadius: 20,
+        color: '#000',
+        marginTop: 10,
+        fontSize: 16
+    },
+    colorResgistrar:{
+        color:'#2D4C89'
+    }
 })
 
 export default InputsRegister

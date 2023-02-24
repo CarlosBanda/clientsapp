@@ -12,8 +12,8 @@ function Panel() {
     const [dn, setdn] = useState('')
     const [isVisible, setIsVisible] = useState(false)
     const {useGetDevice, addDevice, isLoading} = getDataDB()
-    const [accessToken, setAccessToken ] = useState('');
-    console.log(accessToken)
+    // const [accessToken, setAccessToken ] = useState('');
+    // console.log(useGetDevice)
 
     if (isLoading) {
         return (
@@ -54,7 +54,7 @@ function Panel() {
                     </View>
                 </Modal>
             </View>
-            <View style={styles.body}>
+            {/* <View style={styles.body}>
                 {
                     useGetDevice.length === 0 ? <Text>Aún no cuenta con dispositivos</Text> :
                     <View style={{flex: 1}}>
@@ -71,7 +71,7 @@ function Panel() {
                     </View>
 
                 }    
-            </View>
+            </View> */}
         </View>
      );
 }
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         marginBottom: 10,
-        borderColor: '#F5232D',
+        borderColor: '#2D4C89',
         // marginTop: 3
     },
     modalAdd:{

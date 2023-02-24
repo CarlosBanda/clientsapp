@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 export const DrawerMenu = () => {
   return (
     <Drawer.Navigator >
-      <Drawer.Screen name="MyTabs" component={MyTabs} />
+      <Drawer.Screen name="MyTabs"  component={MyTabs} />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );

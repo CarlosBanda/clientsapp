@@ -5,7 +5,8 @@ import {globalStyle} from '../styles';
 import  {ModalConsumo}  from '../components/ModalConsumos';
 import { consultUF } from '../api/altan';
 
-function Card({device}) {
+function Card(device) {
+    // console.log(auth)
     const {number, company, service, user_email, created_at, id} = device;
     const [modalConsumo, setModalConsumo] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderStyle: 'solid',
         borderRadius: 15,
-        borderColor: '#4923F5',
+        borderColor: '#2D4C89',
         backgroundColor:'#FFFFFF'
         // marginTop: 60
     },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         marginBottom: 15,
-        borderColor: '#F5232D',
+        borderColor: '#2D4C89',
         padding: 3,
 
     },

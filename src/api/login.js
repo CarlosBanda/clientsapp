@@ -10,20 +10,18 @@ export async function loginApi(phone, password){
                 password,
             })
         }) 
-        console.log(response.userId)
         return data = await response.json()
-        
-        console.log(response.status)
-        console.log(user_id)
-        console.log(response.status)
-        console.log(message)
-        console.log(http_code)
-        if (response.status == 200) {
-            // statusLogin = 'login'
-            // Navigations(statusLogin)
-        }else if (response.status == 400 || response.status == 500) {
-            // statusLogin = 'NoLogin'
-            // Navigations(statusLogin)
+
+        const {http_code, userId} = await response.json()
+
+        if (http_code == 400) {
+            console.log('ERROOOOO')
+            return false;
+
+        }else if (http_code == 200) {
+            console.log('CRACKKKKKKKK')
+            // getDevices(userId)
+            return data = await response.json()
         }
     } catch (error) {
         console.log(error)

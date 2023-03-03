@@ -13,7 +13,7 @@ const Login = () => {
                 <View style={[styles.header,{flex:1, alignItems: 'center'}]}>
                     <View style={styles.gif}>
                         {/* <Image style={styles.burbuja} source={require('../../assets/img/Onda.png')}/> */}
-                        <Image style={styles.logo} source={require('../../assets/img/log.png')}/>
+                        <Image style={styles.logo} source={require('../../assets/img/pre-logo.png')}/>
                         {/* <Image style={styles.network} source={require('../../assets/img/Social-network.gif')}/> */}
                     </View>
                 </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         width: 360,
       },
       logo:{
-        height:110,
+        height:130,
         width:200,
         marginTop: 10,
         marginBottom: 40

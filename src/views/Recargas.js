@@ -1,105 +1,197 @@
-import React, { useEffect, useState } from 'react'
-import {Text,StyleSheet,View, Pressable, Modal, Button, Touchable, ActivityIndicator} from 'react-native'
-import { globalStyle } from '../styles';
+import React, { useEffect, useState } from 'react';
+import {Text,StyleSheet,View, Image, Button, Pressable, ScrollView, FlatList, ImageBackground} from 'react-native';
+import { getDataDB } from '../helpers/getDataDB';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+const diccionarioServicio = {
+  MIFI: require('../../assets/img/INTERNET-1.png'),
+  MOV: require('../../assets/img/MOV-2.png'),
+
+}
+
+const diccionarioLogo = {
+  MIFI: require('../../assets/img/MODEM-2.png'),
+  MOV: require('../../assets/img/CEL-2.png'),
+}
 
 
-function Recargas() {
-   
-    return ( 
-        <View style={styles.container}>
-            <Text>Recargas</Text>
-            {/* <View style={styles.body}>
-                {
-                    useGetDevice.length === 0 ? <Text>Aún no cuenta con dispositivos</Text> :
-                    <View style={{flex: 1}}>
-                        <Carousel
-                        itemWidth={300}
-                        sliderWidth={400}
-                        data={useGetDevice}
-                        keyExtractor={(item) => item.id}
-                        renderItem={({item}) => {return(
-                            <Card device={item} item={item} accessToken={accessToken}></Card>
-                        )}}
-                        
-                        />
-                    </View>
+export const Recargas = () => {
 
-                }    
-            </View> */}
+  const {useGetDevice} = getDataDB();
+
+  return (
+    <View style={styles.contenedor}>
+      <ImageBackground source={require('../../assets/img/Circulos-01.png')} style={styles.image}>
+        <View style={styles.headerDevice}>
+          <Text style={styles.tituloNumero}>Mis números</Text>
         </View>
-     );
+        <ScrollView>
+          {
+            useGetDevice.length === 0 ? <Text></Text> :
+
+            <FlatList
+              data={useGetDevice}
+              keyExtractor={(item) => item.compay}
+              renderItem={({item}) => {return(
+
+                <View>
+                  <View style={styles.card}>
+                    <View style={styles.content}>
+                      <View style={styles.infoPlan}>
+                        <View style={styles.mtText}>
+                          <Text style={[styles.text, styles.infoCenter]}>{item.number}</Text>
+                          { item.service == 'MOV' &&
+                          (
+                            <View>
+                              <View>
+                                <Image style={styles.servicioMov} source={diccionarioServicio[item.service]}/>
+                              </View>
+                              <View>
+                                <Image style={styles.logoMov} source={diccionarioLogo[item.service]}/>
+                              </View>
+                            </View>
+                          )}
+
+                          { item.service == 'MIFI' &&
+                          (
+                            <View>
+                              <View>
+                                <Image style={styles.servicioMifi} source={diccionarioServicio[item.service]}/>
+                              </View>
+                              <View>
+                                <Image style={styles.logoMifi} source={diccionarioLogo[item.service]}/>
+                              </View>
+                            </View>
+                          )}
+
+                          { item.service == 'HBB' &&
+                          (
+                            <View>
+                              <View>
+                                <Image style={styles.servicioHbb} source={diccionarioServicio[item.service]}/>
+                              </View>
+                              <View>
+                                <Image style={styles.logoHbb} source={diccionarioLogo[item.service]}/>
+                              </View>
+                            </View>
+                          )}
+
+                          {/* <Image style={styles.servicios} source={diccionarioServicio[item.service]}/> */}
+                        </View>
+                        {/* <View>
+                          <Image style={styles.mifiDevice} source={diccionarioLogo[item.service]}/>
+                        </View> */}
+                      </View>
+                    </View>
+                    <Pressable style={styles.btnRecargar}><Text style={styles.textoRecargar}><Icon name="cart-outline" size={30} />Recargar</Text></Pressable>
+                  </View>
+                </View>
+
+              )}}
+            />
+          }
+          </ScrollView>
+
+      </ImageBackground>
+    </View>
+
+  )
 }
 
 const styles = StyleSheet.create({
-    input:{
-        backgroundColor: '#fff',
-        padding: 10,
-        borderRadius: 20,
-        borderColor: '#d5d9dc',
-        borderWidth: 2,
-        color: '#000',
-        marginTop: 10,
-        marginBottom: 30,
-        fontSize: 15,
-        marginHorizontal: 10
-    },
-    textTitle:{
-        marginTop: 20,
-        fontSize: 15,
-        marginHorizontal: 80,
-        fontWeight: 'bold'
-    },
-    textNum:{
-        marginLeft: 20,
-        marginTop: 20
-    },
-    text:{
-        color: 'black'
-    },
-    container:{
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    body:{
-        flex: 8,
-        width:'100%',
-        marginVertical: 100,
-        height: 400,
-        alignContent: 'center',
-        // backgroundColor:'red'
-    },
-    addDevice:{
-        flex:1,
-        marginHorizontal:35,
-        alignItems:'flex-start',
-        marginBottom: -50,
-        marginTop: 10,
-    },
-    btnAddDevice:{
-        padding: 5,
-        color:'black',
-        fontSize: 15,
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        borderColor: '#F5232D',
-        marginTop: 10
-    },
-    modalAdd:{
-        flex: 1,
-        backgroundColor:'rgba(0,0,0,0.3)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bodyModal:{
-        borderRadius: 10,
-        width: 300,
-        height: 250,
-        backgroundColor: 'white',
-        // alignItems: 'center',
-    },
-    btns:{
-        ...globalStyle.btnsModal
-    }
+  contenedor:{
+    flex: 1,
+    backgroundColor: '#f2f2f2'
+  },
+  card:{
+      alignItems:'center',
+      justifyContent:'center',
+      width: '70%',
+      marginVertical: 40,
+      marginHorizontal: 60,
+      marginBottom: 1,
+      borderWidth: 2,
+      borderStyle: 'solid',
+      borderRadius: 15,
+      borderColor: '#2D4C89',
+      backgroundColor: '#FFF'
+  },
+
+  headerDevice:{
+      borderColor: '#fff',
+      alignItems: 'center'
+  },
+  tituloNumero:{
+    marginTop: 10,
+    fontWeight: 'bold',
+    fontSize: 25,
+    color:'black'
+  },
+  btnRecargar:{
+
+      backgroundColor: '#001b54',
+      paddingVertical: 5,
+      paddingHorizontal: 70,
+      borderRadius: 5,
+      marginVertical: 10
+
+  },
+  textoRecargar:{
+    color: '#FFF',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    fontWeight: 'bold'
+  },
+  infoPlan:{
+      alignItems: 'center'
+  },
+  mifiDevice:{
+      height: 140,
+      width: 150,
+      marginVertical: 30,
+      marginHorizontal: 50,
+  },
+  mtText:{
+      marginTop:10,
+      alignItems:'center'
+  },
+  infoCenter:{
+      color: '#000',
+      fontWeight: 'bold',
+      alignItems:'center',
+      fontSize: 25
+  },
+  servicioMifi:{
+    width: 140,
+    height: 45,
+    // marginVertical: 15,
+    // marginHorizontal: 8
+    marginLeft:40
+  },
+  servicioMov:{
+    marginLeft: 70,
+    width: 140,
+    height: 55,
+  },
+  logoMov:{
+    width: 160,
+    height: 110,
+    marginRight:70
+  },
+  logo:{
+    width: 100,
+    height: 80,
+  },
+  logoMifi:{
+    width: 150,
+    height: 140,
+    marginLeft: 10
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center"
+  },
+
 })
-export default Recargas;
+
+export default Recargas

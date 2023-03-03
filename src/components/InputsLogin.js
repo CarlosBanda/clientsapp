@@ -13,7 +13,6 @@ const InputsLogin = ()  =>  {
 
     const handIngresar  = async () =>{
         const data = await loginApi(phone, password)
-        console.log(data + 'IMPUTSLOGIN')
         login(data)
     }   
 

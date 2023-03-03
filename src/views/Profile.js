@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {Text,StyleSheet,View, Pressable, Modal, Button, Touchable, ActivityIndicator} from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
-import { TextInput } from 'react-native-gesture-handler';
 import { globalStyle } from '../styles/';
 
 
@@ -9,52 +7,9 @@ function Profile() {
    
     return ( 
         <View style={styles.container}>
-            
-            <View style={styles.addDevice}>
-                {/* <Pressable style={styles.btnAddDevice} onPress={() => setIsVisible(true)}> */}
-                <Pressable style={styles.btnAddDevice}>
-                    <Text style={{color:'black', alignItems:'center'}}>Agregar Dispositivo <Icon name='add-outline' size={25} color="blue"/></Text>
-                </Pressable>
-
-                <Modal animationType='slide' transparent={true} visible={isVisible}>
-                    <View style={styles.modalAdd}>
-                        <View style={styles.bodyModal}>
-                            <View style={styles.formModal}>
-                                <Text style= {[styles.text, styles.textTitle]}>Nuevo Dispositivo</Text>
-                                <Text style= {[styles.text, styles.textNum]}>Número de SIM</Text>
-                                {/* <TextInput style={styles.input} placeholderTextColor="#000" keyboardType='number-pad'
-                        maxLength={10} placeholder='Número' value={dn} onChangeText={setdn}/> */}
-                                <TextInput style={styles.input} placeholderTextColor="#000" keyboardType='number-pad'
-                        maxLength={10} placeholder='Número' value={'9611761896'} />
-                            </View>
-                            <View style={styles.btns}>
-                                {/* <Button color="red"  title='Cancelar' onPress={() => setIsVisible(false)}></Button>
-                                <Button title='Agregar' onPress={() => addDevice(dn)}></Button> */}
-                                <Button color="red"  title='Cancelar' onPress={() =>{}}></Button>
-                                <Button title='Agregar' onPress={() => {}}></Button>
-                            </View>
-                        </View>
-                    </View>
-                </Modal>
+            <View>
+                <Text style={styles.text}>PERFIL</Text>
             </View>
-            {/* <View style={styles.body}>
-                {
-                    useGetDevice.length === 0 ? <Text>Aún no cuenta con dispositivos</Text> :
-                    <View style={{flex: 1}}>
-                        <Carousel
-                        itemWidth={300}
-                        sliderWidth={400}
-                        data={useGetDevice}
-                        keyExtractor={(item) => item.id}
-                        renderItem={({item}) => {return(
-                            <Card device={item} item={item} accessToken={accessToken}></Card>
-                        )}}
-                        
-                        />
-                    </View>
-
-                }    
-            </View> */}
         </View>
      );
 }

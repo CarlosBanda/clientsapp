@@ -11,8 +11,8 @@ const Drawer = createDrawerNavigator();
 export const DrawerMenu = () => {
   return (
     <Drawer.Navigator >
-      <Drawer.Screen name="MyTabs"  component={MyTabs} />
-      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="MyTabs" options={{title: 'SpotMobile'}} component={MyTabs} />
+      <Drawer.Screen name="Profile" options={{title: 'SpotMobile'}} component={Profile} />
     </Drawer.Navigator>
   );
 }

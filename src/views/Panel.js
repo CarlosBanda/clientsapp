@@ -6,9 +6,17 @@ import Carousel from 'react-native-snap-carousel';
 import { TextInput } from 'react-native-gesture-handler';
 import { globalStyle } from '../styles/';
 import Card from '../components/Card';
+// import {getTokenApi} from '../api/token'
 
 
 function Panel() {
+    // useEffect(() => {
+    //     ( async () =>{
+    //       const devices = await getDeviceApi()
+    //       console.log(devices)
+    //     })()
+    //   }, [])
+    // console.log(getDeviceApi)
     const [dn, setdn] = useState('')
     const [isVisible, setIsVisible] = useState(false)
     const {useGetDevice, addDevice, isLoading} = getDataDB()
@@ -54,7 +62,7 @@ function Panel() {
                     </View>
                 </Modal>
             </View>
-            {/* <View style={styles.body}>
+            <View style={styles.body}>
                 {
                     useGetDevice.length === 0 ? <Text>Aún no cuenta con dispositivos</Text> :
                     <View style={{flex: 1}}>
@@ -64,14 +72,14 @@ function Panel() {
                         data={useGetDevice}
                         keyExtractor={(item) => item.id}
                         renderItem={({item}) => {return(
-                            <Card device={item} item={item} accessToken={accessToken}></Card>
+                            <Card device={item} item={item} ></Card>
                         )}}
                         
                         />
                     </View>
 
                 }    
-            </View> */}
+            </View>
         </View>
      );
 }
@@ -128,7 +136,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         marginBottom: 10,
-        borderColor: '#2D4C89',
+        ...globalStyle.borderColorPrimary,
         // marginTop: 3
     },
     modalAdd:{

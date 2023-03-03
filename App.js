@@ -6,6 +6,8 @@ import { DrawerMenu } from './src/navigations/Drawer';
 import LoginNavigations from './src/navigations/LoginNavigation';
 import AuthContext from './src/context/AuthContext'; 
 import {setTokenApi, getTokenApi} from "./src/api/token"
+import {setDeviceApi} from "./src/api/devices"
+// const {getDevices} = getDataDB()
 
 
 const App = () => {
@@ -14,7 +16,6 @@ const App = () => {
   useEffect(() => {
     ( async () =>{
       const token = await getTokenApi()
-      console.log(token)
       if (token) {
         setAuth({
           token
@@ -26,11 +27,11 @@ const App = () => {
   }, [])
    
   const login = (user)=>{
-    console.log('LOGIN APP')
     const http_code = user.http_code
 
     if (http_code == '200') {
       setTokenApi(user.jwt)
+      setDeviceApi(user.devices)
       setAuth({
         token: user.jwt,
         userId: user.userId,
@@ -40,8 +41,6 @@ const App = () => {
       Alert.alert('Error',
       'Número o Contraseña incorrecta.',)
     }
-    console.log(http_code)
-    
   }
   const authData = useMemo(
     () =>({

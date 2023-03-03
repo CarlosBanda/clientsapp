@@ -6,7 +6,6 @@ import  {ModalConsumo}  from '../components/ModalConsumos';
 import { consultUF } from '../api/altan';
 
 function Card(device) {
-    // console.log(auth)
     const {number, company, service, user_email, created_at, id} = device;
     const [modalConsumo, setModalConsumo] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -32,9 +31,10 @@ function Card(device) {
     return ( 
         <View style={styles.card}>
             <View style={[styles.headerDevice,{flex:1}]}>
-                <Image style={styles.mifiLetra} source={require('../../assets/img/MIFI-2.png')}/>
+                <Image style={styles.mifiLetra} source={require('../../assets/img/MOV-2.png')}/>
                 <Text style={styles.dateActivation}>Activado desde:</Text> 
-                <Text style={[styles.infoCenter, styles.text]}>{created_at}</Text> 
+                {/* <Text style={[styles.infoCenter, styles.text]}>{created_at}</Text>  */}
+                <Text style={[styles.infoCenter, styles.text]}>08-12-2022</Text> 
             </View>
             <View style={[styles.content,{flex:4}]}>
                 <View style={[styles.infoPlan,{flex:2}]}>
@@ -44,18 +44,20 @@ function Card(device) {
                     </View>
                     <View style={styles.mtText}>
                         <Text style={[styles.text, styles.infoCenter]}>Número</Text>
-                        <Text style={[styles.text]}>{number}</Text>
+                        {/* <Text style={[styles.text]}>{number}</Text> */}
+                        <Text style={[styles.text]}>9613601404</Text>
                     </View>
                     <View style={styles.mtText}>
                         <Text style={[styles.text, styles.infoCenter]}>Estado de servicio: Activo</Text>
                     </View>
                     <View style={styles.mtText}>
                         <Text style={[styles.text, styles.infoCenter]}>Correo electrónico:</Text>
-                        <Text style={styles.text}>{user_email}</Text>
+                        {/* <Text style={styles.text}>{user_email}</Text> */}
+                        <Text style={styles.text}>c.banda07@gmail.com</Text>
                     </View>
                 </View>
                 <View style={{flex:1}}>
-                    <Image style={styles.mifiDevice} source={require('../../assets/img/MIFI.png')}/>
+                    <Image style={styles.mifiDevice} source={require('../../assets/img/CEL-2.png')}/>
                 </View>
             </View>
             <Pressable style={styles.btnConsumos} onPress={()=> onClick(onClick)}><Text style={styles.text}>Consumos de datos</Text></Pressable>
@@ -83,7 +85,8 @@ const styles = StyleSheet.create({
     headerDevice:{
         width: '100%',
         borderColor: '#fff',
-        alignItems: 'center'
+        alignItems: 'center',
+        // justifyContent: 'center'
     },
     content:{
         width: '100%',
@@ -94,11 +97,11 @@ const styles = StyleSheet.create({
         ...globalStyle.text
     },
     mifiLetra:{
-        height: 50,
-        width: 100,
-        marginVertical: 20,
-        // marginLeft: 80,
-        // marginTop: 10
+        height: 70,
+        width: 170,
+        // marginVertical: 30,
+        marginLeft: 60,
+        marginTop: 20
     },
     dateActivation:{
         marginTop: -10,
@@ -119,10 +122,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     mifiDevice:{
-        height: 140,
-        width: 110,
+        height: 160,
+        width: 160,
         marginHorizontal: 80,
-        marginTop: -20
+        marginTop: -20,
+        marginLeft: 40
     },
     mtText:{
         marginTop:10,

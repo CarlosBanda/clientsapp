@@ -7,7 +7,7 @@ export const getDataDB = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const getDevices = async () => { 
-        // console.log(userId+ ' DATABASE')
+        console.log(userId+ ' DATABASE')
 
         setIsLoading(true)
         const userId = 41;

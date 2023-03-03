@@ -1,6 +1,17 @@
 export const globalStyle = {
     colorPrimary: {
-        color: '#4923F5'
+        color: '#2D4C89'
+    },
+
+    colorSecondary:{
+        color: '#3E3E3D'
+    },
+
+    borderColorPrimary:{
+        borderColor: '#2D4C89'
+    },
+    borderColorSecondary:{
+        borderColor: '#3E3E3D'
     },
 
     text:{

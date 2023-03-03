@@ -42,7 +42,7 @@ const TabsIndroid= () => {
       },
       
     })} initialRouteName="Home"
-      activeColor="#040964"
+      activeColor="#2D4C89"
       inactiveColor="#3e2465"
       barStyle={{ backgroundColor: '#FFFFFF' }}>
       <Tab.Screen  name="Panel"  component={Panel} />

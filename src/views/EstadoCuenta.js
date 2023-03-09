@@ -3,44 +3,50 @@ import {Text, StyleSheet, View, Pressable, ScrollView } from 'react-native'
 import { globalStyle } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Consumos from '../components/Consumos';
+import DownloadDailyConsumption from '../components/DownloadDailyConsumption';
 
 
 function EstadoCuenta() {
     const [Wifiactive, setWifiactive] = useState(true);    
     const [Callactive, setCallactive] = useState(false);    
     const [MSJactive, setMSJactive] = useState(false);    
+    const [Type, setType] = useState('Voz');    
 
     const handleClick = (type) => {        
         setWifiactive(false)
         setCallactive(false)
         setMSJactive(false)
         switch (type) {
-            case 'wifi': 
+            case 'Datos': 
                 setWifiactive(!Wifiactive)
+                // setType(3)
                 break;
-            case 'call':
+            case 'Voz':
                 setCallactive(!Callactive)
+                // setType(2)
                 break;
-            case 'msj': 
+            case 'SMS': 
                 setMSJactive(!MSJactive)
+                // setType(1)
                 break;        
             default:
                 break;
         }
+        setType(type)
     };
     
     return ( 
         <View style={styles.container}>
             <View style={styles.seccionButtonsContainer}>
-                <Pressable onPress={()=>handleClick('wifi')} style={[styles.seccionButtons, Wifiactive ? styles.seccionButtonsBorderActivate : styles.seccionButtonsBorderDisable]}>
+                <Pressable onPress={()=>handleClick('Datos')} style={[styles.seccionButtons, Wifiactive ? styles.seccionButtonsBorderActivate : styles.seccionButtonsBorderDisable]}>
                     <Icon style={[styles.IconButtons, Wifiactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]} name='wifi'/>
-                    <Text style={[styles.TextWhitIcon, Wifiactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}>Llamadas</Text>
+                    <Text style={[styles.TextWhitIcon, Wifiactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}>Datos</Text>
                 </Pressable >
-                <Pressable onPress={()=>handleClick('call')} style={[styles.seccionButtons, Callactive ? styles.seccionButtonsBorderActivate : styles.seccionButtonsBorderDisable]}>
+                <Pressable onPress={()=>handleClick('Voz')} style={[styles.seccionButtons, Callactive ? styles.seccionButtonsBorderActivate : styles.seccionButtonsBorderDisable]}>
                     <Icon style={[styles.IconButtons, Callactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}  name='phone'/>
-                    <Text style={[styles.TextWhitIcon, Callactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}>Llamadas</Text>
+                    <Text style={[styles.TextWhitIcon, Callactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}>Voz</Text>
                 </Pressable>
-                <Pressable onPress={()=>handleClick('msj')} style={[styles.seccionButtons, MSJactive ? styles.seccionButtonsBorderActivate : styles.seccionButtonsBorderDisable]}>
+                <Pressable onPress={()=>handleClick('SMS')} style={[styles.seccionButtons, MSJactive ? styles.seccionButtonsBorderActivate : styles.seccionButtonsBorderDisable]}>
                     <Icon style={[styles.IconButtons, MSJactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}  name='commenting-o'/>
                     <Text style={[styles.TextWhitIcon, MSJactive ? styles.seccionButtonsActivate : styles.seccionButtonsDisable]}>Mensaje</Text>
                 </Pressable>
@@ -53,14 +59,18 @@ function EstadoCuenta() {
                         <Icon style={[styles.IconWhitText, styles.IconButtons, styles.contentOptionsText]}  name='envelope-o'/>
                         <Text style={[styles.TextWhitIcon, styles.contentOptionsIcons]}>Enviar por correo</Text>
                     </View> */}
-                    <View>
-                        <Icon style={[styles.IconWhitText, styles.IconButtons, styles.contentOptionsText]} name='download'/>
-                        <Text style={[styles.TextWhitIcon, styles.contentOptionsIcons]}>Descargar PDF</Text>
-                    </View>
+                    <DownloadDailyConsumption type={Type} 
+                        phone={3339064244}
+                        dateStart={"2023-03-03"}
+                        dateEnd={"2023-03-03"}
+                    />
                 </View>
-                <View style={styles.contentOptions}>
-                    <Consumos/>
-                </View>
+                <Consumos type={Type} 
+                    phone={3339064244}
+                    dateStart={"2023-03-03"}
+                    dateEnd={"2023-03-03"}
+                />
+
             </ScrollView>
             
         </View>

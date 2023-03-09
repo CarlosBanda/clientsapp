@@ -5,8 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DrawerMenu } from './src/navigations/Drawer';
 import LoginNavigations from './src/navigations/LoginNavigation';
 import AuthContext from './src/context/AuthContext'; 
-import {setTokenApi, getTokenApi} from "./src/api/token"
+import {setTokenApi, getTokenApi, removeTokenApi} from "./src/api/token"
 import {setDeviceApi} from "./src/api/devices"
+import { MenuLateral } from './src/navigations/DrawerPersonalizado';
 // const {getDevices} = getDataDB()
 
 
@@ -42,11 +43,19 @@ const App = () => {
       'Número o Contraseña incorrecta.',)
     }
   }
+
+  const logout = () =>{
+    if (auth) {
+      removeTokenApi();
+      setAuth(null)
+    }
+  }
+
   const authData = useMemo(
     () =>({
       auth,
       login,
-      logout: () => null,
+      logout,
     }),[auth]
   );
 
@@ -55,7 +64,8 @@ const App = () => {
     <AuthContext.Provider value={authData}>
       <NavigationContainer>
         {/*  */}
-        {auth ? <DrawerMenu/> : <LoginNavigations/>}
+        {/* {auth ? <DrawerMenu/> : <LoginNavigations/>} */}
+        {auth ? <MenuLateral/> : <LoginNavigations/>}
         
         {/* <DrawerPersonalizado/> */}
       </NavigationContainer>

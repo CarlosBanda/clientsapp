@@ -1,14 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import {Text,StyleSheet,View, Pressable, Modal, Button, Touchable, ActivityIndicator} from 'react-native'
+import {Text,StyleSheet,View, Alert, TouchableOpacity} from 'react-native'
 import { globalStyle } from '../styles/';
-
+import useAuth from '../hooks/useAuth';
+import Icon  from 'react-native-vector-icons/Ionicons';
 
 function Profile() {
+    const {logout} = useAuth();
+
+    const logoutConfirm = () =>{
+        Alert.alert(
+            "Cerrar Sesión",
+            "¿Desea cerrar su sesión?",
+            [
+                {
+                    text: "No"
+                },
+                {
+                    text: 'Si',
+                    onPress: logout
+                }
+            ],
+            {cancelable: false}
+        )
+    }
    
     return ( 
         <View style={styles.container}>
             <View>
-                <Text style={styles.text}>PERFIL</Text>
+                <TouchableOpacity onPress={logoutConfirm}>
+                    <Text style={styles.text}>Cerrar Sesión <Icon color={'red'} name={'exit-outline'} size={20}/></Text>
+                </TouchableOpacity>
             </View>
         </View>
      );
@@ -38,7 +59,8 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     text:{
-        color: 'black'
+        color: 'red',
+        fontSize: 20
     },
     container:{
         flex: 1,

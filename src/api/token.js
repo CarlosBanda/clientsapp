@@ -17,3 +17,12 @@ export async function getTokenApi(){
         return null;
     }
 }
+
+export async function removeTokenApi(){
+    try {
+        await AsyncStorage.removeItem("token");
+        return true;
+    } catch (error) {
+        return null;
+    }
+}
